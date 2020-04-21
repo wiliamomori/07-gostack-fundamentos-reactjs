@@ -17,6 +17,7 @@ const Upload: React.FC<UploadProps> = ({ onUpload }: UploadProps) => {
         <UploadMessage>Selecione ou arraste o arquivo aqui.</UploadMessage>
       );
     }
+    // console.log(isDragRejest);
 
     if (isDragRejest) {
       return <UploadMessage type="error">Arquivo não suportado</UploadMessage>;
@@ -27,7 +28,10 @@ const Upload: React.FC<UploadProps> = ({ onUpload }: UploadProps) => {
 
   return (
     <>
-      <Dropzone accept="text/csv" onDropAccepted={(files) => onUpload(files)}>
+      <Dropzone
+        accept="text/csv,application/vnd.ms-excel"
+        onDropAccepted={(files) => onUpload(files)}
+      >
         {({ getRootProps, getInputProps, isDragActive, isDragReject }): any => (
           <DropContainer
             {...getRootProps()}
